@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="nadlan-transactions" uuid="fbc2fd82-6054-458d-84e5-a3157df6bbe8">
+    <data-source source="LOCAL" name="nadlan-transactions" uuid="ea618f78-5ea4-4dde-9a3d-5dfbf431c27c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
