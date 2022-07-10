@@ -22,15 +22,24 @@ def main():
     script_automation(connection, cursor, url, interval)
 
 
-# function to fetch the data from the target address
 def fetch(connection, cursor, url):
+    """
+    Fetch the data from the target address
+
+    :param connection: Connection to the nadlan-transactions database
+    :type connection: Sqlite3 object
+    :param cursor: Cursor object to execute sql commands
+    :type cursor: Sqlite3 object
+    :param url: The target URL from which scraping data
+    :type url: str
+    """
     # Setting up chromedriver
     driver = webdriver.Chrome("./chromedriver")
-    # wait for javascript to load
+    # Wait for javascript to load
     driver.implicitly_wait(1000)
     last_height = driver.execute_script("return document.body.scrollHeight")
     driver.get(url)
-    # loop to keep scrolling the page to load all javascript
+    # Loop to keep scrolling the page to load all javascript
     while True:
         # Scroll down to the bottom.
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -43,21 +52,21 @@ def fetch(connection, cursor, url):
         last_height = new_height
     content = driver.page_source
     soup = BeautifulSoup(content, 'html.parser')
-    # getting all table rows
+    # Getting all table rows
     rows = soup.findAll("div", class_="tableRow")
-    # list to store the formatted values of every row
+    # List to store the formatted values of every row
     res = []
     for row in rows:
         divs = row.findAll("div", class_="tableCol")
-        # list to hold the data of every column in a row
+        # List to hold the data of every column in a row
         r = []
         for div in divs:
             r.append(div.text.strip())
         res.append(r)
 
-    # list to hold the data of every column in a row
     cursor.execute('''DELETE FROM transactions''')
-    # traversing the results array and populating the database
+
+    # Traversing the results array and populating the database
     for values in res:
         sale_date = values[0]
         home_address = values[1]
@@ -76,7 +85,6 @@ def fetch(connection, cursor, url):
     driver.quit()
 
 
-# getting the time interval for the script
 def time_interval():
     while True:
         time_interval = input("Fetching interval?\n 1. Daily\n 2. Hourly\n 3. Minutely\n please insert 1,2, or 3\n~ ")
@@ -90,12 +98,24 @@ def time_interval():
             print("Invalid input")
     return time_interval
 
-# script automation
+
 def script_automation(connection, cursor, url, interval):
+    """
+    Running the scraping process in automation according to provided time interval
+
+    :param connection: Connection to the nadlan-transactions database
+    :type connection: Sqlite3 object
+    :param cursor: Cursor object to execute sql commands
+    :type cursor: Sqlite3 object
+    :param url: The target URL from which scraping data
+    :type url: str
+    :param interval: Time interval for the script provided by the user
+    :type interval: str
+    """
     while True:
         fetch(connection, cursor, url)
         print('Database updated')
-        # code for printing out the database
+        # Code for printing out the database
         cursor.execute('''SELECT * FROM transactions''')
         results = cursor.fetchall()
         print(results)
