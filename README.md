@@ -10,6 +10,8 @@ To deploy this project you need to do this steps:
 
     1. Clone the repo and open the project directory
     2. Execute in the terminal: pip install -r requirements.txt
-    3. Execute in the terminal: python scraper.py
-    4. Insert address and time interval
-    5. Stop the automation with CTRL + C / CTRL + Z
+    3. [Download](https://sites.google.com/chromium.org/driver/donloads) the last version of chromedriver for your own operating system
+    4. Put the chromedriver in the folder under the name chromedrive 
+    5. Execute in the terminal: python scraper.py
+    6. Insert address and time interval
+    7. Stop the automation with CTRL + C / CTRL + Z
