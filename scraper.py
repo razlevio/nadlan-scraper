@@ -42,7 +42,8 @@ def fetch(connection, cursor, url):
     # Loop to keep scrolling the page to load all javascript
     while True:
         # Scroll down to the bottom.
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script(
+            "window.scrollTo(0, document.body.scrollHeight);")
         # Wait to load the page.
         time.sleep(1)
         # Calculate new scroll height and compare with last scroll height.
@@ -87,7 +88,8 @@ def fetch(connection, cursor, url):
 
 def time_interval():
     while True:
-        time_interval = input("Fetching interval?\n 1. Daily\n 2. Hourly\n 3. Minutely\n please insert 1,2, or 3\n~ ")
+        time_interval = input(
+            "Fetching interval?\n 1. Daily\n 2. Hourly\n 3. Minutely\n please insert 1,2, or 3\n~ ")
         if time_interval == '1':
             break
         elif time_interval == '2':
@@ -125,6 +127,7 @@ def script_automation(connection, cursor, url, interval):
             time.sleep(3600)
         elif interval == '3':
             time.sleep(60)
+
 
 if __name__ == "__main__":
     main()
