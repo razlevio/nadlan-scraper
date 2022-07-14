@@ -1,6 +1,6 @@
 # Real Estate Transcations Scraper
 
-Let the user insert an address and a time interval, the scraper will extract all of the real estate transactions in the address provided and save all of the details of the transactions to an SQLite database. The data will be scraped based on the interval; there are three intervals daily, hourly, and minutely which means the data will be pulled every day/hour/minute based on the user input, and the database will be updated accordingly.
+Let the user insert an address and a time interval, the scraper will extract all of the real estate transactions in the address provided and save all of the details of the transactions to an SQLite database. The data will be scraped automatically based on the interval provided; there are three intervals daily, hourly, and minutely which means the data will be pulled every day/hour/minute based on the user input, and the database will be updated accordingly.
 
 
 ## Deployment
